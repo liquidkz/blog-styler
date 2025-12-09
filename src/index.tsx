@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties, useState } from 'react';
 import clsx from 'clsx';
-import { Article } from './components/article/Article';
+import { Article } from 'components/article';
 import { ArticleParamsForm } from 'components/article-params-form';
 import { defaultArticleState } from './constants/articleProps';
 
@@ -12,7 +12,6 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [articleStyles, setArticleStyles] = useState(defaultArticleState);
 
 	const cssVars: CSSProperties = {
@@ -26,8 +25,6 @@ const App = () => {
 	return (
 		<main className={clsx(styles.main)} style={cssVars}>
 			<ArticleParamsForm
-				isOpen={isOpen}
-				setIsOpen={setIsOpen}
 				articleState={articleStyles}
 				setArticleStyles={setArticleStyles}
 			/>

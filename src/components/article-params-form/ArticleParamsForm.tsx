@@ -19,20 +19,16 @@ import { Separator } from 'src/ui/separator';
 import { Text } from 'src/ui/text';
 
 interface ArticleParamsFormProps {
-	isOpen: boolean;
-	setIsOpen: (value: boolean) => void;
 	articleState: ArticleStateType;
 	setArticleStyles: (value: typeof defaultArticleState) => void;
 }
 
 export const ArticleParamsForm = ({
-	isOpen,
-	setIsOpen,
 	articleState,
 	setArticleStyles,
 }: ArticleParamsFormProps) => {
 	const [formState, setFormState] = useState<ArticleStateType>(articleState);
-
+	const [isOpen, setIsOpen] = useState(false);
 	useEffect(() => {
 		if (isOpen) {
 			setFormState(articleState);
@@ -42,6 +38,7 @@ export const ArticleParamsForm = ({
 	const handleApply = (e: FormEvent) => {
 		e.preventDefault();
 		setArticleStyles(formState);
+		setIsOpen(false);
 	};
 
 	const handleReset = () => {
